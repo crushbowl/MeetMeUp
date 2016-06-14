@@ -26,7 +26,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                 let JSONDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as!
                     NSDictionary
-                
+                print("\(JSONDictionary)")
 //                we need to access whatevers at the other end of the key within the JSON dictionary (web) - we're accessing the value by using the key ("results") and using that to assign to self.meetups
                 self.meetups = JSONDictionary.valueForKey("results") as! [NSDictionary]
             
@@ -52,6 +52,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.textLabel?.text = meetupGroup?["name"] as? String
         cell.detailTextLabel?.text = meetupGroup?["description"] as? String
         
+        
+        
         return cell
         
     }
@@ -59,8 +61,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return meetups?.count
-    }
+//        return meetups?.count
+        if let count = meetups?.count {
+        return count
+        } else {
+            return 0
+        }
+        }
    
 
 
